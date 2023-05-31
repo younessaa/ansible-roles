@@ -1,0 +1,10 @@
+- hosts: machine-yunas01
+  gather_facts: false
+  vars:
+    VAULT_TOKEN: "{{ lookup('file', '~/vault/root_token') }}"
+    approle_id: "{{ lookup('file', '~/vault/approle_id.json') | from_json }}"
+    secret_id: "{{ lookup('file', '~/vault/secret_id.json') | from_json }}"
+  roles:
+    - role: './ansible-role'
+    
+#   - role: './create-vault-secrets-role'
